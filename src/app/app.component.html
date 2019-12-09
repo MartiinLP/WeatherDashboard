@@ -1,0 +1,49 @@
+<br/>
+<h1 class="text-center">Weather Dashboard</h1>
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-body">
+      <img width="180" alt="Angular Logo" src="../assets/img/weather.png" class="mx-auto">      
+        <br>
+          <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle btn-block mt-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select your city
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="getWeatherC('Obregon', 'mx')" href="#">Obregon</a>
+                <a class="dropdown-item" (click)="getWeatherC('Navojoa', 'mx')" href="#">Navojoa</a>
+                <a class="dropdown-item" (click)="getWeatherC('Hermosillo', 'mx')" href="#">Hermosillo</a>
+                <a class="dropdown-item" (click)="getWeatherC('Nogales', 'mx')" href="#">Nogales</a>
+              </div>         
+            </div> 
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="weather" class="card card-body text-center">
+        <h1 class="h4">Weather Information</h1>
+        <p>City: {{weather.city_name}}</p>
+        <p>Latitude: {{weather.lat}}</p>
+        <p>Longitude: {{weather.lon}}</p> 
+        <p *ngIf="show">Temperature: {{weather.data[0].temp}}°C</p>       
+        <p *ngIf="!show">Temperature: {{weather.data[0].temp}} F</p>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle btn-block mt-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Units shown
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="getWeatherC(this.weather.city_name, 'mx')" href="#">Celcius</a>
+              <a class="dropdown-item" (click)="getWeatherF(this.weather.city_name, 'mx')" href="#">Fahrenheit</a>             
+            </div>
+          </div>
+      </div>     
+    </div>
+  </div>
+<br>
+
+  <div class="col-md-12">
+      <div id="chartContainer" style="width: 100%; height: 400px;"></div>
+  </div>
+  
+
+</div>
